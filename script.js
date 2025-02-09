@@ -1,39 +1,54 @@
-function proceed() {
-    document.getElementById('popup').style.display = 'none';
-    startConfetti();
-}
+let lastX = 0, lastY = 0, lastZ = 0;
+let shakeThreshold = 15; // Adjust this value if needed
 
-// Confetti Animation
-const canvas = document.getElementById("confetti");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+window.addEventListener("devicemotion", function(event) {
+    let acceleration = event.accelerationIncludingGravity;
+    if (!acceleration) return;
 
-let confetti = [];
-const colors = ["#ff4081", "#6200ea", "#ffd700", "#00e676"];
+    let deltaX = Math.abs(acceleration.x - lastX);
+    let deltaY = Math.abs(acceleration.y - lastY);
+    let deltaZ = Math.abs(acceleration.z - lastZ);
 
-for (let i = 0; i < 100; i++) {
-    confetti.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 6 + 2,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        speed: Math.random() * 3 + 1
-    });
-}
+    if (deltaX + deltaY + deltaZ > shakeThreshold) {
+        cutCake();
+    }
 
-function drawConfetti() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    confetti.forEach((c, index) => {
-        ctx.beginPath();
-        ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2, false);
-        ctx.fillStyle = c.color;
-        ctx.fill();
-        c.y += c.speed;
-        if (c.y > canvas.height) confetti[index].y = 0;
-    });
-}
+    lastX = acceleration.x;
+    lastY = acceleration.y;
+    lastZ = acceleration.z;
+});
 
-function startConfetti() {
-    setInterval(drawConfetti, 30);
-                }
+function cutCake() {
+    let slice = document.getElementById("slice");
+    let flame = document.getElementById("flame");
+    let message = document.getElementById("message");
+    let balloonsContainer = document.getElementById("balloons");
+
+    // Show the cake slice
+    slice.style.opacity = "1";
+    slice.style.animation = "cutCake 1s ease-in-out";
+
+    // Make the flame disappear
+    flame.style.animation = "fadeOut 0.5s ease-in-out";
+    setTimeout(() => { flame.style.opacity = "0"; }, 500);
+
+    // Display balloons
+    for (let i = 0; i < 30; i++) {
+        let balloon = document.createElement("div");
+        balloon.className = "balloon";
+        balloon.style.left = Math.random() * 100 + "vw";
+        balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+        balloonsContainer.appendChild(balloon);
+    }
+
+    // Show the message
+    setTimeout(() => {
+        message.classList.remove("hidden");
+        message.style.animation = "fadeInText 3s ease forwards";
+    }, 1000);
+
+    // Redirect after 15 seconds
+    setTimeout(() => {
+        window.location.href = "nextpage.html";
+    }, 18000); // 3s animation + 15s delay
+            }
