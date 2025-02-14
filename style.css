@@ -1,74 +1,116 @@
-/* General Styling */
+/* 🔹 Background - Shining Blue/Purple with Stars */
 body {
     margin: 0;
-    padding: 0;
-    background: linear-gradient(45deg, #ff4e50, #fc913a, #f9d423);
-    height: 100vh;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Arial', sans-serif;
-    overflow: hidden;
+    height: 100vh;
+    perspective: 1000px;
+    font-family: Arial, sans-serif;
 }
 
-/* Pop-up Box */
-.popup {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
-    animation: popIn 1s ease-in-out;
+.background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, #1e1e40, #090921);
 }
 
-/* Text */
-.popup p {
-    font-size: 20px;
-    font-weight: bold;
-    color: #ff4081;
-    animation: fadeIn 1.5s ease-in-out;
+/* 🔹 Add small shining stars */
+.background::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity: 0.3;
 }
 
-/* Button */
-.popup button {
-    background: #6200ea;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 18px;
-    border-radius: 5px;
+/* 🔹 Gift Box - Glowing & Clickable */
+.gift-box {
+    position: relative;
+    width: 150px;
+    height: 150px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    animation: bounce 1s infinite;
+    animation: glow 1.5s infinite alternate;
 }
 
-.popup button:hover {
-    background: #ff4081;
-    transform: scale(1.1);
+/* Box Base */
+.box {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #ff66b2, #ff3366);
+    border-radius: 10px;
 }
 
-/* Animations */
-@keyframes popIn {
-    0% { transform: scale(0); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
+/* Box Lid */
+.lid {
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    background: linear-gradient(45deg, #ff3366, #ff99cc);
+    border-radius: 10px;
+    top: -30px;
+    transition: transform 0.5s ease-in-out;
 }
 
-@keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+/* 🔹 Tap to Open Text */
+.tap-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: white;
+    bottom: -30px;
+    animation: bounce 1s infinite alternate;
+}
+
+/* 🔹 3D Rotating Photo Frame */
+.photo-frame {
+    position: absolute;
+    width: 300px;
+    height: 400px;
+    transform-style: preserve-3d;
+    transition: transform 1s ease-in-out, opacity 0.5s;
+    opacity: 0;
+}
+
+/* 🔹 Photos Inside Frame */
+.photo {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+/* Images */
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Position Photos for 3D Effect */
+.photo1 { transform: translateZ(20px); }
+.photo2 { transform: rotateY(10deg) translateZ(10px); }
+.photo3 { transform: rotateY(-10deg) translateZ(10px); }
+
+/* 🔹 Glow Effect for Frame */
+.photo-frame {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
+}
+
+/* 🔹 Animations */
+@keyframes glow {
+    from { box-shadow: 0 0 10px rgba(255, 0, 255, 0.5); }
+    to { box-shadow: 0 0 20px rgba(255, 255, 255, 0.9); }
 }
 
 @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-}
-
-/* Confetti Animation */
-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-          }
+    from { transform: translateY(0px); }
+    to { transform: translateY(5px); }
+    }
