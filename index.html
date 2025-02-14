@@ -3,17 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday!</title>
+    <title>Surprise Gift</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="popup" id="popup">
-        <p>Ohhh, so you are the birthday boy?</p>
-        <button onclick="proceed()">Yes, Proceed</button>
+    <div class="background"></div>  
+
+    <div class="gift-box" onclick="openGift()">
+        <div class="lid"></div>
+        <div class="box"></div>
+        <p class="tap-text">Tap to Open</p>
     </div>
 
-    <canvas id="confetti"></canvas> <!-- For animated confetti -->
-    
+    <div class="photo-frame" id="photoFrame">
+        <div class="photo photo1"><img src="image1.jpg" alt="Photo 1"></div>
+        <div class="photo photo2"><img src="image2.jpg" alt="Photo 2"></div>
+        <div class="photo photo3"><img src="image3.jpg" alt="Photo 3"></div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
