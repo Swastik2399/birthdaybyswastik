@@ -1,4 +1,4 @@
-/* 🔹 Background - Shining Blue/Purple with Stars */
+/* Background */
 body {
     margin: 0;
     overflow: hidden;
@@ -17,23 +17,14 @@ body {
     background: radial-gradient(circle, #1e1e40, #090921);
 }
 
-/* 🔹 Add small shining stars */
-.background::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: url('https://www.transparenttextures.com/patterns/stardust.png');
-    opacity: 0.3;
-}
-
-/* 🔹 Gift Box - Glowing & Clickable */
+/* Gift Box */
 .gift-box {
     position: relative;
     width: 150px;
     height: 150px;
     cursor: pointer;
     animation: glow 1.5s infinite alternate;
+    z-index: 2;
 }
 
 /* Box Base */
@@ -56,7 +47,7 @@ body {
     transition: transform 0.5s ease-in-out;
 }
 
-/* 🔹 Tap to Open Text */
+/* Tap to Open Text */
 .tap-text {
     position: absolute;
     width: 100%;
@@ -67,7 +58,7 @@ body {
     animation: bounce 1s infinite alternate;
 }
 
-/* 🔹 3D Rotating Photo Frame */
+/* Hidden Photo Frame */
 .photo-frame {
     position: absolute;
     width: 300px;
@@ -75,9 +66,10 @@ body {
     transform-style: preserve-3d;
     transition: transform 1s ease-in-out, opacity 0.5s;
     opacity: 0;
+    display: none; /* Initially Hidden */
 }
 
-/* 🔹 Photos Inside Frame */
+/* Photos Inside Frame */
 .photo {
     position: absolute;
     width: 100%;
@@ -87,7 +79,6 @@ body {
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
 
-/* Images */
 .photo img {
     width: 100%;
     height: 100%;
@@ -96,21 +87,4 @@ body {
 
 /* Position Photos for 3D Effect */
 .photo1 { transform: translateZ(20px); }
-.photo2 { transform: rotateY(10deg) translateZ(10px); }
-.photo3 { transform: rotateY(-10deg) translateZ(10px); }
-
-/* 🔹 Glow Effect for Frame */
-.photo-frame {
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
-}
-
-/* 🔹 Animations */
-@keyframes glow {
-    from { box-shadow: 0 0 10px rgba(255, 0, 255, 0.5); }
-    to { box-shadow: 0 0 20px rgba(255, 255, 255, 0.9); }
-}
-
-@keyframes bounce {
-    from { transform: translateY(0px); }
-    to { transform: translateY(5px); }
-    }
+.photo
