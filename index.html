@@ -3,35 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birthday Surprise</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Birthday Wish</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: white;
+            font-size: 36px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            color: white;
+            background: #ff4081;
+            border: none;
+            cursor: pointer;
+            border-radius: 25px;
+            margin-top: 20px;
+            transition: 0.3s;
+            box-shadow: 0 0 10px #ff4081;
+        }
+
+        button:hover {
+            background: #e6005c;
+            box-shadow: 0 0 20px #ff0055;
+        }
+
+        #message {
+            font-size: 28px;
+            color: white;
+            font-weight: bold;
+            display: none;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        #proceedBtn {
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
 </head>
 <body>
-    <div class="background"></div>
 
-    <!-- Gift Box -->
-    <div class="gift-box" id="giftBox">
-        <div class="lid"></div>
-        <div class="box"></div>
-        <p class="tap-text">Tap to Open</p>
-    </div>
+    <h1>🤗 Welcome</h1>
+    <button onclick="showMessage()">Enter</button>
+    <p id="message">🎉 Many Many Happy Returns of the Day! 🎂</p>
+    <button id="proceedBtn" onclick="proceed()">Proceed</button>
 
-    <!-- Hidden 3D Rotating Frames -->
-    <div class="frame-container" id="frameContainer">
-        <div class="photo-frame frame1">
-            <img src="https://github.com/user-attachments/assets/fc9f5a18-5f61-4592-a91f-d59093f69805" alt="Photo 1">
-        </div>
-        <div class="photo-frame frame2">
-            <img src="https://github.com/user-attachments/assets/fb0e05e9-abc1-4b6e-a7d4-67b80f2d395b" alt="Photo 2">
-        </div>
-        <div class="photo-frame frame3">
-            <img src="https://github.com/user-attachments/assets/21cc4332-8416-4b8e-97e8-6362e9ae3da4" alt="Photo 3">
-        </div>
-    </div>
+    <script>
+        function showMessage() {
+            document.getElementById("message").style.display = "block";
+            document.getElementById("message").style.animation = "fadeIn 1.5s ease-in-out forwards";
+            setTimeout(() => {
+                document.getElementById("proceedBtn").style.display = "inline-block";
+            }, 1500);
+        }
 
-    <script src="script.js"></script>
+        function proceed() {
+            window.location.href = "nextpage.html"; // Change to your next page
+        }
+    </script>
+
 </body>
 </html>
-
-
-
