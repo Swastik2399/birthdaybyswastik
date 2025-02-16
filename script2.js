@@ -1,5 +1,5 @@
 let lastX = 0, lastY = 0, lastZ = 0;
-let threshold = 12; // Lowered the threshold for better sensitivity
+let threshold = 12; 
 let isCakeCut = false;
 
 window.addEventListener("devicemotion", function(event) {
@@ -30,15 +30,23 @@ window.addEventListener("devicemotion", function(event) {
 
 function cutCake() {
     let cake = document.getElementById("cake");
-    cake.style.transform = "scale(0.9) rotate(10deg)";
+    let candle = document.querySelector(".candle");
+    let flame = document.querySelector(".flame");
+
+    cake.style.animation = "cut 0.5s forwards";
+    
+    // Remove candle and flame
+    setTimeout(() => {
+        candle.style.display = "none";
+        flame.style.display = "none";
+    }, 500);
 
     setTimeout(() => {
-        cake.innerHTML = "🎂🎉"; // Replacing cake with an animated emoji
         document.getElementById("message").classList.remove("hidden");
         document.getElementById("proceedBtn").classList.remove("hidden");
     }, 1000);
 }
 
 function nextPage() {
-    window.location.href = "index3.html"; // Now redirects to index3.html
+    window.location.href = "index3.html"; 
 }
