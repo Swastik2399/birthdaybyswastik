@@ -1,64 +1,115 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f8d5a3;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #fce4ec;
     overflow: hidden;
 }
 
-.cake-container {
-    position: relative;
-    cursor: pointer;
+.container {
     margin-top: 50px;
 }
 
-@keyframes cutCake {
-    0% { opacity: 0; transform: translateY(-10px); }
-    100% { opacity: 1; transform: translateY(0); }
+/* Cake Styling */
+#cake {
+    position: relative;
+    width: 150px;
+    margin: auto;
 }
 
-@keyframes fadeOut {
-    0% { opacity: 1; }
-    100% { opacity: 0; }
-}
-
-@keyframes balloonFloat {
-    0% { transform: translateY(100vh); }
-    100% { transform: translateY(-100vh); }
-}
-
-.balloons {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-}
-
-.balloon {
-    width: 30px;
+.layer {
+    width: 150px;
     height: 50px;
-    background-color: rgba(255, 0, 0, 0.7);
+    background-color: #ff8a80;
+    border-radius: 10px;
+    margin: 5px auto;
+    position: relative;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.middle {
+    background-color: #ff5252;
+}
+
+.bottom {
+    background-color: #d50000;
+}
+
+/* Candle */
+.candle {
+    width: 10px;
+    height: 30px;
+    background-color: #ffeb3b;
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+/* Flame */
+.flame {
+    width: 10px;
+    height: 15px;
+    background-color: orange;
     border-radius: 50%;
     position: absolute;
-    bottom: -100px;
-    animation: balloonFloat 5s ease-out forwards;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: flicker 0.3s infinite alternate;
+}
+
+/* Balloons */
+.hidden {
+    display: none;
 }
 
 #message {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2em;
-    font-family: 'Cursive', sans-serif;
-    opacity: 0;
-    animation: fadeInText 3s ease forwards;
+    font-size: 24px;
+    color: #d81b60;
+    font-weight: bold;
+    margin-top: 20px;
+    animation: fadeIn 1s ease-in-out;
 }
 
-@keyframes fadeInText {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #d81b60;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ad1457;
+}
+
+/* Keyframes for flickering candle */
+@keyframes flicker {
+    from {
+        transform: translateX(-50%) scaleY(1);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-50%) scaleY(1.1);
+        opacity: 0.8;
+    }
+}
+
+/* Keyframes for shake animation */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+/* Cake Cut Animation */
+@keyframes cut {
+    0% { transform: scale(1); }
+    100% { transform: scale(0.8) rotate(-10deg); }
 }
